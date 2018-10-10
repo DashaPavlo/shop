@@ -12,16 +12,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.LinearLayout
-import android.widget.TextView
-import com.example.pavlovadasha.dashapavlovashop.ProductsActivity
 import kotlinx.coroutines.experimental.*
-import kotlinx.coroutines.experimental.android.Main
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JSON
 import org.jetbrains.anko.*
 import org.jetbrains.anko.custom.customView
 import org.jetbrains.anko.recyclerview.v7.recyclerView
-import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.kodein.di.direct
 import org.kodein.di.generic.instance
 
@@ -31,6 +28,10 @@ class CategoriesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        Thread.currentThread().setUncaughtExceptionHandler { t, e ->
+            e.printStackTrace()
+        }
 
         GlobalScope.launch(Dispatchers.Main) {
 
@@ -43,7 +44,7 @@ class CategoriesActivity : AppCompatActivity() {
             }
 
             val json = async(Dispatchers.IO) {
-                requestMaker.make("https://api.myjson.com/bins/xn43o")
+                requestMaker.make("https://gist.githubusercontent.com/DashaPavlo/f0d8fce0e05b5f28469f6567dbe8aafb/raw/d9f6594a2c0b2d806924419c90055941ac1eac56/categories.json")
             }.await()
 
             val categoriesList: CategoriesList = JSON.parse(json)
@@ -71,6 +72,7 @@ class CategoriesAdapter(
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int) = run {
         val view = CategoryView(context)
+        view.layoutParams = ViewGroup.LayoutParams(matchParent, wrapContent)
         CategoryViewHolder(view)
     }
 

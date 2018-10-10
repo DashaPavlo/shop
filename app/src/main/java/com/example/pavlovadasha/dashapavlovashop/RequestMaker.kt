@@ -2,8 +2,6 @@ package com.example.pavlovadasha.dashapavlovashop
 
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import java.net.HttpURLConnection
-import java.net.URL
 
 interface RequestMaker {
     fun make(url: String): String
@@ -14,6 +12,10 @@ class OkHttpRequestMaker : RequestMaker {
     val client = OkHttpClient()
 
     override fun make(url: String) = run {
+
+        Thread.currentThread().setUncaughtExceptionHandler { t, e ->
+            e.printStackTrace()
+        }
 
         val request = Request.Builder()
                 .url(url)

@@ -24,7 +24,7 @@ import okhttp3.Response
 import org.jetbrains.anko.*
 import org.jetbrains.anko.custom.customView
 import org.jetbrains.anko.recyclerview.v7.recyclerView
-import org.jetbrains.anko.sdk25.coroutines.onClick
+import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.kodein.di.direct
 import org.kodein.di.generic.instance
 
@@ -35,10 +35,7 @@ class ProductsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
-
         GlobalScope.launch(Dispatchers.Main) {
-
 
             frameLayout {
                 progressBar {
@@ -50,10 +47,6 @@ class ProductsActivity : AppCompatActivity() {
             }
             val categoryJson = intent.getStringExtra("category")
             val category: Category = JSON.parse(categoryJson)
-            val request = Request.Builder()
-                    .url("https://api.myjson.com/bins/obnpo")
-                    .build()
-            val client = OkHttpClient()
 
             val json = async(Dispatchers.IO) {
                 requestMaker.make(category.url)
