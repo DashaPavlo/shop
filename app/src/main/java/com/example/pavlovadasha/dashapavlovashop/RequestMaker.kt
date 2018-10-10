@@ -27,9 +27,4 @@ class OkHttpRequestMaker : RequestMaker {
 
 }
 
-class DefaultRequestMaker : RequestMaker {
 
-    override fun make(url: String) =
-            (URL(url).openConnection() as HttpURLConnection).inputStream.reader().readText()
-
-}
