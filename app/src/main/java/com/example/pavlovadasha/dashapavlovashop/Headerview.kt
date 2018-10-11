@@ -13,7 +13,7 @@ class HeaderView(context: Context) : FrameLayout(context) {
 
     init {
         titleView = textView {
-            textSize = 72f
+            textSize = 32f
             typeface = Typeface.create(Typeface.createFromAsset(context.assets, "Madelina.ttf"), Typeface.BOLD)
         }
     }

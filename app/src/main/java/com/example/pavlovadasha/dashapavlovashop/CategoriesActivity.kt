@@ -40,7 +40,7 @@ class CategoriesActivity : AppCompatActivity() {
             }
 
             val json = async(Dispatchers.IO) {
-                requestMaker.make("https://gist.githubusercontent.com/DashaPavlo/f0d8fce0e05b5f28469f6567dbe8aafb/raw/d9f6594a2c0b2d806924419c90055941ac1eac56/categories.json")
+                requestMaker.make("https://gist.githubusercontent.com/DashaPavlo/a2f984a089a5b3643935bab1dc26542c/raw/ac451e79749a9d0364ddcc985462f02abc54c2a7/gistfile1.txt")
             }.await()
 
             val categoriesList: CategoriesList = JSON.parse(json)
