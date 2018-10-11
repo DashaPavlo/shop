@@ -13,10 +13,6 @@ class OkHttpRequestMaker : RequestMaker {
 
     override fun make(url: String) = run {
 
-        Thread.currentThread().setUncaughtExceptionHandler { t, e ->
-            e.printStackTrace()
-        }
-
         val request = Request.Builder()
                 .url(url)
                 .build()

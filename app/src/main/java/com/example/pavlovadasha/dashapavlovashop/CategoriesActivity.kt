@@ -29,10 +29,6 @@ class CategoriesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Thread.currentThread().setUncaughtExceptionHandler { t, e ->
-            e.printStackTrace()
-        }
-
         GlobalScope.launch(Dispatchers.Main) {
 
             frameLayout {
