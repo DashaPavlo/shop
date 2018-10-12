@@ -47,7 +47,9 @@ class CategoriesActivity : AppCompatActivity() {
 
             verticalLayout {
                 customView<HeaderView> {
-                    titleView.text = "Категории"
+                    titleView.text = "Categories"
+                }.lparams {
+                    gravity = Gravity.CENTER
                 }
                 recyclerView {
                     layoutManager = LinearLayoutManager(this@CategoriesActivity)
@@ -75,7 +77,7 @@ class CategoriesAdapter(
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         val category = categories[position]
         holder.view.titleView.text = category.title
-        holder.view.onClick {
+        holder.view.titleView.onClick {
             Preferences.currentCategoryUrl = category.url
             val categoryJson = JSON.stringify(category)
             context.startActivity<ProductsActivity>("category" to categoryJson)

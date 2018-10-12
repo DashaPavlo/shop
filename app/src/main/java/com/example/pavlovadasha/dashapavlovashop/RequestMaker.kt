@@ -9,7 +9,6 @@ interface RequestMaker {
 
 class OkHttpRequestMaker : RequestMaker {
 
-
     val client = OkHttpClient()
 
     override fun make(url: String) = run {
@@ -25,5 +24,3 @@ class OkHttpRequestMaker : RequestMaker {
     }
 
 }
-
-

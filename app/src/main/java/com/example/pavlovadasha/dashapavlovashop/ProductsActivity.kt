@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.text.TextUtils
+import android.text.TextUtils.*
 import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.FrameLayout
@@ -66,6 +68,8 @@ class ProductsActivity : AppCompatActivity() {
                     adapter = ProductsAdapter(products = accessories.products, context = this@ProductsActivity)
                 }.lparams {
                     margin = dip(25)
+                    width = matchParent
+                    height = matchParent
                 }
             }
 
@@ -133,7 +137,6 @@ class ProductsActivity : AppCompatActivity() {
         lateinit var priceView: TextView
         lateinit var pictureView: ImageView
 
-
         init {
             layoutParams = LayoutParams(matchParent, wrapContent)
 
@@ -147,17 +150,23 @@ class ProductsActivity : AppCompatActivity() {
 
                 verticalLayout {
                     titleView = textView {
+                        lines = 2 // всегда отображать 2 строки
+                        ellipsize = TruncateAt.END // обрезать в конце многоточием
+                        gravity = Gravity.CENTER
+                    }.lparams {
+                        width = matchParent
+                        height = wrapContent
                     }
                     priceView = textView {
-
+                        gravity = Gravity.CENTER
                     }.lparams {
                         gravity = Gravity.CENTER
+                        width = matchParent
+                        height = wrapContent
                     }
                 }
 
             }
-
-
         }
     }
 }
